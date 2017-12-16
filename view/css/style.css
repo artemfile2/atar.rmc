@@ -1,0 +1,25 @@
+.wrapper{
+/*    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 40px 100px 40px;*/
+}
+
+.header{
+    /*grid-column: span 12;*/
+    border: 1px solid blueviolet;
+}
+
+.menu{
+    /*grid-column: span 4;*/
+    border: 1px solid burlywood;
+}
+
+.content{
+    /*grid-column: span 8;*/
+    border: 1px solid cadetblue;
+}
+
+.footer{
+    /*grid-column: span 12;*/
+    border: 1px solid chartreuse;
+}
