@@ -1,11 +1,10 @@
 <?php
 
-namespace Models;
+namespace Controllers;
 
 use Models\Database;
 
-class Query
-{
+class Filial extends Client{
     protected $db;
     protected $m_db;
 
@@ -14,12 +13,11 @@ class Query
         $this->db = $this->m_db->getDb();
     }
 
-    public function getAll($table)
+    public function getAll()
     {
         $query = $this->db
-            ->query('SELECT * FROM '.$table.' ORDER BY kod');
+            ->query('SELECT * FROM filial ORDER BY kod');
 
         return $query;
     }
-
 }

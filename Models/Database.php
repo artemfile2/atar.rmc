@@ -8,7 +8,7 @@ include_once 'config.php';
 
 class Database {
 
-    static $db;
+    protected static $db;
     private $host = HOST;
     private $dbname = DBNAME;
     private $user = USER;
@@ -16,11 +16,12 @@ class Database {
 
     public function __construct()
     {
-
-        self::$db = new PDO("mysql:host={$this->host};dbname={$this->dbname};charset=utf8",
-            $this->user, $this->pass);
-        self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        if (static::$db === null){
+            self::$db = new PDO("mysql:host={$this->host};dbname={$this->dbname};charset=utf8",
+                $this->user, $this->pass, [
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                ]);
+        }
     }
 
     public static function getDb()

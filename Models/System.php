@@ -1,6 +1,6 @@
 <?php
 
-namespace Controlls;
+namespace Controllers;
 
 class System
 {
@@ -8,7 +8,7 @@ class System
     public function template($path, $array = []){
         extract($array);
         ob_start();
-            include "view/{$path}";
+            include "View/{$path}";
         return ob_get_clean();
     }
 
