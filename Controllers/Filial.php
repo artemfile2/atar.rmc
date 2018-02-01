@@ -2,22 +2,29 @@
 
 namespace Controllers;
 
-use Models\Database;
+use Models\Filial as Model;
+use Models\System;
 
 class Filial extends Client{
-    protected $db;
-    protected $m_db;
 
-    public function __construct(){
-        $this->m_db = new Database();
-        $this->db = $this->m_db->getDb();
+    public function action_index()
+    {
+        $this->title .= 'главная';
+
+        $this->content = System::template('v_main.php', [
+            'content_main' => 'ATAR',
+            ]);
     }
 
-    public function getAll()
+    public function action_all()
     {
-        $query = $this->db
-            ->query('SELECT * FROM filial ORDER BY kod');
+        $filial = new Model();
+        $fil_all = $filial->All();
 
-        return $query;
+        $this->title .= 'Справочник filial';
+
+        $this->content = System::template('v_filial.php',
+            ['content' => $fil_all]
+        );
     }
 }
