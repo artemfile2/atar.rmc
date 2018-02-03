@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="view\css\style.css">
+    <link rel="stylesheet" href="\resources\css\style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <title>ATAR-RMC</title>
+    <title><?=$title?></title>
 </head>
 <body>
 
@@ -38,26 +38,7 @@
 
         <div class="col-7 content">
             <?php
-            if (isset($content)):
-                ?>
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Код</th>
-                        <th>Наименование отделения</th>
-                        <th>Заведующий(ая)</th>
-                        <th colspan="2" style="text-align: center">Действие</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    isset($content) ? $content : 'content';
-                    ?>
-                    </tbody>
-                </table>
-            <?php
-            endif;
+                echo $content;
             ?>
         </div>
 

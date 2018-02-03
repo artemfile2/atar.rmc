@@ -8,12 +8,12 @@ class MainMenu
     public function Menu(){
         return $menu = [
             'index_list' => [
-                'link' => '/filial',
+                'link' => '/filial/all',
                 'name' =>'Тарификационный список',
                 'active' => false,
             ],
             'employees' => [
-                'link' => '/strax',
+                'link' => '/strax/all',
                 'name' => 'Сотрудники',
                 'active' => false,
             ],

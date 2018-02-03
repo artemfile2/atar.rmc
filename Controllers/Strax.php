@@ -2,23 +2,32 @@
 
 namespace Controllers;
 
-use Models\Database;
+use Models\Strax as Model;
+use Models\System;
 
-class Strax
+class Strax extends Client
 {
-    protected $db;
-    protected $m_db;
+    public function action_all()
+    {
+        $strax = new Model();
+        $straxid = $strax->all();
 
-    public function __construct(){
-        $this->m_db = new Database();
-        $this->db = $this->m_db->getDb();
+        $this->title .= 'Справочник strax';
+
+        $this->content = System::template('v_strax.php',
+            ['content' => $straxid]
+        );
     }
 
-    public function getAll()
+    public function action_one()
     {
-        $query = $this->db
-            ->query('SELECT * FROM strax');
+        $strax = new Model();
+        $straxid = $strax->One($this->params[2]);
 
-        return $query;
+        $this->title .= 'Справочник strax';
+
+        $this->content = System::template('v_strax.php',
+            ['content' => $straxid]
+        );
     }
 }

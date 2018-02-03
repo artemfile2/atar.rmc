@@ -3,11 +3,13 @@
 namespace Controllers;
 
 use Models\System;
+use Models\MainMenu;
 
 abstract class Client extends Base{
     protected $title;
     protected $content;
     protected $params;
+    protected $menu;
     
     public function __construct(){
         $this->title = 'Наш сайт - ';
@@ -15,9 +17,13 @@ abstract class Client extends Base{
     }
 
     public function render(){
-        $html = System::template('v_main.php', [
+        $menu = new MainMenu();
+        $mainmenu = $menu->Menu();
+
+        $html = System::template('base.php', [
             'title' => $this->title,
-            'content' => $this->content
+            'content' => $this->content,
+            'mainmenu' => $mainmenu
          ]);
          
         return $html;

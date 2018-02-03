@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Filial extends Client{
+class Filial{
     protected $db;
     protected $m_db;
 
@@ -16,6 +16,7 @@ class Filial extends Client{
         $query = $this->db
             ->query('SELECT * FROM filial ORDER BY kod');
 
-        return $query;
+        return $query->fetchAll();
     }
+
 }
