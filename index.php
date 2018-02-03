@@ -32,14 +32,3 @@ $controller->$action();
 $html = $controller->render();
 
 echo $html;
-
-/*$menu = new MainMenu();
-$mainmenu = $menu->Menu();*/
-
-/*$mainmenu['employees']['active'] = true;*/
-
-/*$db = new \Controllers\Filial();
-$filials = $db->getAll('filial');
-
-
-include_once 'View/base.php';*/

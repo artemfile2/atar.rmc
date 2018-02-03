@@ -13,7 +13,7 @@ class MainMenu
                 'active' => false,
             ],
             'employees' => [
-                'link' => '/strax',
+                'link' => '/strax/all',
                 'name' => 'Сотрудники',
                 'active' => false,
             ],

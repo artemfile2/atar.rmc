@@ -18,4 +18,5 @@ class Filial{
 
         return $query->fetchAll();
     }
+
 }
