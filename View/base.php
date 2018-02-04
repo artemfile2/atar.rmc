@@ -37,13 +37,17 @@
         </div>
 
         <div class="col-7 content">
+            <?= $breadcrumb;?>
+
             <?php
                 echo $content;
             ?>
         </div>
 
         <div class="col-2 menu">
-            <div class="card-panel orange lighten-3 z-depth-3">Добавить</div>
+            <div class="col-12 btn btn-outline-success">
+                Добавить
+            </div>
         </div>
     </div>
 

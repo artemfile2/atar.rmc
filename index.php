@@ -1,7 +1,7 @@
 <?php
 
 use Models\Query;
-use Models\MainMenu;
+/*use Models\MainMenu;*/
 
 spl_autoload_register(function($classname) {
     $classname = strtolower($classname);

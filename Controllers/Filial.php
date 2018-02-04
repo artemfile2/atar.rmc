@@ -13,6 +13,9 @@ class Filial extends Client{
 
         $this->content = System::template('v_main.php', [
             'content_main' => 'ATAR',
+            'breadcrumb' => [
+                'Главная',
+                ]
             ]);
     }
 
@@ -24,8 +27,12 @@ class Filial extends Client{
         $this->title .= 'Справочник filial';
 
         $this->content = System::template('v_filial.php',
-            ['content' => $fil_all]
-        );
+            ['content' => $fil_all,
+             'breadcrumb' => [
+                 'Главная',
+                 'Справочник filial'
+                ]
+            ]);
     }
 
 }

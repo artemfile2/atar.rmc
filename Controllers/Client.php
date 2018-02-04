@@ -10,6 +10,7 @@ abstract class Client extends Base{
     protected $content;
     protected $params;
     protected $menu;
+    protected $breadcrumb;
     
     public function __construct(){
         $this->title = 'Наш сайт - ';
