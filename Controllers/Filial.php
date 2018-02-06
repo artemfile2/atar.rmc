@@ -24,6 +24,11 @@ class Filial extends Client{
         $filial = new Model();
         $fil_all = $filial->All();
 
+        if ($fil_all == null){
+            $this->show404();
+            return;
+        }
+
         $this->title .= 'Справочник filial';
 
         $this->content = System::template('v_filial.php',

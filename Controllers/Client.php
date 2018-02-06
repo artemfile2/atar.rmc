@@ -28,5 +28,11 @@ abstract class Client extends Base{
          ]);
          
         return $html;
-    } 
+    }
+
+    public function show404()
+    {
+        $this->title = 'Страница не найдена';
+        $this->content = System::template('v_404.php');
+    }
 }

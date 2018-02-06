@@ -12,6 +12,11 @@ class Strax extends Client
         $strax = new ModelStrax();
         $straxid = $strax->all();
 
+        if ($straxid == null){
+            $this->show404();
+            return;
+        }
+
         $this->title .= 'Справочник strax';
 
         $this->content = System::template('v_strax.php',
@@ -27,6 +32,11 @@ class Strax extends Client
     {
         $strax = new ModelStrax();
         $straxid = $strax->NumDepart($this->params[2]);
+
+        if ($straxid == null){
+            $this->show404();
+            return;
+        }
 
         $this->title .= 'Справочник strax';
 
