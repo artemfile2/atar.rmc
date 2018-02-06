@@ -10,6 +10,7 @@ abstract class Client extends Base{
     protected $content;
     protected $params;
     protected $menu;
+    protected $breadcrumb;
     
     public function __construct(){
         $this->title = 'Наш сайт - ';
@@ -27,5 +28,11 @@ abstract class Client extends Base{
          ]);
          
         return $html;
-    } 
+    }
+
+    public function show404()
+    {
+        $this->title = 'Страница не найдена';
+        $this->content = System::template('v_404.php');
+    }
 }

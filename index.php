@@ -1,8 +1,5 @@
 <?php
 
-use Models\Query;
-use Models\MainMenu;
-
 spl_autoload_register(function($classname) {
     $classname = strtolower($classname);
     $classname = str_replace('\\', '/', $classname);
@@ -18,13 +15,19 @@ if($params_arr[$cnt - 1] === ''){
     unset($params_arr[$cnt - 1]);
 }
 
-$params = isset($params_arr[0]) ? $params_arr[0] : 'filial';
-$controllers = ['filial', 'strax'];
+$params = $params_arr[0] ?? 'filial';
+$controllers = ['filial', 'strax', 'pages'];
 
-$contr_name = 'Controllers\\' . ucfirst($params);
+if (in_array($params, $controllers)) {
+    $contr_name = 'Controllers\\' . ucfirst($params);
+    $action = isset($params_arr[1]) ? 'action_' . $params_arr[1] : 'action_index';
+}
+else{
+    $contr_name = 'Controllers\\' . ucfirst('pages');
+    $action = 'show404';
+}
+
 $controller = new $contr_name();
-
-$action = isset($params_arr[1]) ? 'action_' . $params_arr[1] : 'action_index';
 
 $controller->load($params_arr);
 

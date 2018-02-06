@@ -19,11 +19,22 @@ class Strax{
         return $query->fetchAll();
     }
 
+    public function NumDepart($id)
+    {
+        $id = (string)($id);
+
+        $sql = "SELECT * FROM strax WHERE kod='$id' ORDER BY kod,tab";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
     public function One($id)
     {
-        //$id = (string)($id);
+        $id = (string)($id);
 
-        $sql = "SELECT * FROM strax WHERE kod='$id'"; // ORDER BY kod,tab
+        $sql = "SELECT * FROM strax WHERE tabnum='$id'";
         $query = $this->db->prepare($sql);
         $query->execute();
 
