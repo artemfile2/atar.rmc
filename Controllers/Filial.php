@@ -7,6 +7,15 @@ use Models\System;
 
 class Filial extends Client{
 
+    public function __construct(){
+        $this->auth = (new Auth())->check();
+
+        if(!$this->auth) {
+            header("Location: " . ROOT . 'auth/login');
+            exit();
+        }
+    }
+
     public function action_index()
     {
         $this->title .= 'главная';

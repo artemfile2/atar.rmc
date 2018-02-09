@@ -1,5 +1,7 @@
 <?php
 
+//session_start();
+
 spl_autoload_register(function($classname) {
     $classname = strtolower($classname);
     $classname = str_replace('\\', '/', $classname);
@@ -16,7 +18,7 @@ if($params_arr[$cnt - 1] === ''){
 }
 
 $params = $params_arr[0] ?? 'filial';
-$controllers = ['filial', 'strax', 'pages'];
+$controllers = ['filial', 'strax', 'pages', 'auth'];
 
 if (in_array($params, $controllers)) {
     $contr_name = 'Controllers\\' . ucfirst($params);
@@ -32,6 +34,7 @@ $controller = new $contr_name();
 $controller->load($params_arr);
 
 $controller->$action();
+
 $html = $controller->render();
 
 echo $html;

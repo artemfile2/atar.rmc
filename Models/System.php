@@ -10,4 +10,12 @@ class System
             include "View/{$path}";
         return ob_get_clean();
     }
+
+    public static function templateLogin($path){
+
+        ob_clean();
+        //ob_start();
+        return include "View/{$path}";
+        //return ob_get_clean();
+    }
 }

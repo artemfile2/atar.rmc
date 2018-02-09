@@ -10,7 +10,6 @@ abstract class Client extends Base{
     protected $content;
     protected $params;
     protected $menu;
-    protected $breadcrumb;
     
     public function __construct(){
         $this->title = 'Наш сайт - ';
@@ -18,16 +17,19 @@ abstract class Client extends Base{
     }
 
     public function render(){
-        $menu = new MainMenu();
-        $mainmenu = $menu->Menu();
 
-        $html = System::template('base.php', [
-            'title' => $this->title,
-            'content' => $this->content,
-            'mainmenu' => $mainmenu
-         ]);
-         
-        return $html;
+        if ((new Auth())->check()) {
+            $menu = new MainMenu();
+            $mainmenu = $menu->Menu();
+
+            $html = System::template('base.php', [
+                'title' => $this->title,
+                'content' => $this->content,
+                'mainmenu' => $mainmenu
+            ]);
+
+            return $html;
+        }
     }
 
     public function show404()
