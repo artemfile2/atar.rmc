@@ -25,15 +25,15 @@ class Auth extends Client
             return true;
         }
 
-            /*
-            $sql = "SELECT * FROM users WHERE login LIKE :login";
-            $queryDb = (new Database())->getDb();
-            $query = $queryDb->prepare($sql);
-            $query->bindParam(':login', $login);
-            $query->execute();*/
+        /*$sql = "SELECT * FROM users WHERE login LIKE :login";
+        $queryDb = (new Database())->getDb();
+        $query = $queryDb->prepare($sql);
+        $query->bindParam(':login', $login);
+        $query->execute();*/
     }
 
     public function action_login(){
+        echo var_dump($_POST);
         if(count($_POST) > 0) {
             $login = trim($_POST['login']);
             $password = trim($_POST['password']);
@@ -46,7 +46,6 @@ class Auth extends Client
                     setcookie('password', md5('123456'), time() + 3600 * 24 * 7);
                 }
 
-                ob_clean();
                 header("Location: " . ROOT . 'filial/index');
                 exit();
             }
@@ -55,10 +54,11 @@ class Auth extends Client
             }
         }
 
-        $html = System::templateLogin('v_login.php', [
+        $this->title = 'Авторизация';
+
+        $this->content = System::template('v_login.php', [
             'msg' => $this->msg,
-        ]);
-        return $html;
+            ]);
     }
 
     public function logout(){
