@@ -6,7 +6,8 @@ use Models\Filial as Model;
 use Models\System;
 use Models\MainMenu;
 
-class Filial extends Client{
+class Filial extends Client
+{
     private $mainmenu;
     private $filial_all;
 
@@ -28,7 +29,6 @@ class Filial extends Client{
     {
 
         $this->title .= 'главная';
-
         $this->content = System::template('v_main.php', [
             'content_main' => 'ATAR',
             'mainmenu' => $this->mainmenu,

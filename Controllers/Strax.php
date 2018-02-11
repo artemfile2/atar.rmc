@@ -19,16 +19,14 @@ class Strax extends Client
 
         $this->auth = (new Auth())->check();
 
-        /*if(!$this->auth) {
+        if(!$this->auth) {
             header("Location: " . ROOT . 'auth/login');
             exit();
-        }*/
+        }
     }
 
     public function action_all()
     {
-        /*$strax = new ModelStrax();
-        $straxid = $strax->all();*/
 
         if ($this->straxid == null){
             $this->show404();
@@ -49,7 +47,6 @@ class Strax extends Client
 
     public function action_one()
     {
-        //$strax = new ModelStrax();
         $straxid = (new ModelStrax())->NumDepart($this->params[2]);
 
         if ($straxid == null){

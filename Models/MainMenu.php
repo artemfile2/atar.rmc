@@ -25,6 +25,10 @@ class MainMenu
                 'name' => 'О программе',
                 'active' => false,
             ],
+            'exit' => [
+                'name' => 'Выйти',
+                'active' => false,
+            ],
         ];
     }
 }

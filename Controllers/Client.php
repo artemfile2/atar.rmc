@@ -18,7 +18,6 @@ abstract class Client extends Base{
 
     public function render(){
 
-        //if ((new Auth())->check()) {
             $menu = new MainMenu();
             $mainmenu = $menu->Menu();
 
@@ -29,7 +28,6 @@ abstract class Client extends Base{
             ]);
 
             return $html;
-        //}
     }
 
     public function show404()
