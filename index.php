@@ -1,8 +1,17 @@
 <?php
 
+session_start();
+
+//error_reporting(E_ALL);
+
+/*echo 'Document root: '.$_SERVER['DOCUMENT_ROOT'].'<br>';
+echo 'Полный путь к скрипту и его имя: '.$_SERVER['SCRIPT_FILENAME'].'<br>';
+echo 'Имя скрипта: '.$_SERVER['SCRIPT_NAME'];*/
+
 spl_autoload_register(function($classname) {
     $classname = strtolower($classname);
     $classname = str_replace('\\', '/', $classname);
+
     include_once($classname . '.php');
 });
 
@@ -16,7 +25,7 @@ if($params_arr[$cnt - 1] === ''){
 }
 
 $params = $params_arr[0] ?? 'filial';
-$controllers = ['filial', 'strax', 'pages'];
+$controllers = ['filial', 'strax', 'pages', 'auth'];
 
 if (in_array($params, $controllers)) {
     $contr_name = 'Controllers\\' . ucfirst($params);
@@ -32,6 +41,7 @@ $controller = new $contr_name();
 $controller->load($params_arr);
 
 $controller->$action();
+
 $html = $controller->render();
 
 echo $html;

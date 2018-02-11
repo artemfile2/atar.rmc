@@ -4,57 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="\resources\css\style.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <title><?=$title?></title>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row wrapper">
-        <div class="col-sm header">
-            <a href="#" class="brand-logo right">AtarRMC</a>
-            <p>header</p>
+    <div class="container-fluid">
+        <div class="row wrapper">
+            <div class="col-sm header">
+                <a href="#" class="brand-logo right">AtarRMC</a>
+                <p>header</p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-3 menu">
-            <?php
-            foreach ($mainmenu as $menu){
-                $menu['active'] ? 'active' : '';
-                if ($menu['active']){
-                    $linkClass = "btn btn-primary btn-lg btn-block active";
-                }
-                else{
-                    $linkClass = "btn btn-secondary btn-lg btn-block";
-                }
-                $str = '<a href="'.$menu['link'].'" class="'.$linkClass.'" 
-                           role="button"
-                           >'.$menu['name'].'</a>';
-                echo $str;
-            }
-            ?>
-        </div>
-
-        <div class="col-7 content">
-            <?= $breadcrumb;?>
-
+        <div class="row">
             <?php
                 echo $content;
             ?>
         </div>
 
-        <div class="col-2 menu">
-            <div class="col-12 btn btn-outline-success">
-                Добавить
-            </div>
+        <div class="row">
+            <div class="col footer"><p>footer</p></div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col footer"><p>footer</p></div>
-    </div>
-</div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
