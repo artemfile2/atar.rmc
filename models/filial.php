@@ -1,13 +1,13 @@
 <?php
 
-namespace Models;
+namespace models;
 
-class Filial{
+class filial{
     protected $db;
     protected $m_db;
 
     public function __construct(){
-        $this->m_db = new Database();
+        $this->m_db = new database();
         $this->db = $this->m_db->getDb();
     }
 

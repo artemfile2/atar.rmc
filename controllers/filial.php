@@ -1,23 +1,23 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Filial as Model;
-use Models\System;
-use Models\MainMenu;
+use models\filial as Model;
+use models\system;
+use models\mainmenu;
 
-class Filial extends Client
+class filial extends client
 {
     private $mainmenu;
     private $filial_all;
 
     public function __construct(){
 
-        $this->mainmenu = (new MainMenu())->Menu();
+        $this->mainmenu = (new mainmenu())->Menu();
 
         $this->filial_all = (new Model())->All();
 
-        $this->auth = (new Auth())->check();
+        $this->auth = (new auth())->check();
 
         if(!$this->auth) {
             header("Location: " . ROOT . 'auth/login');
@@ -29,7 +29,7 @@ class Filial extends Client
     {
 
         $this->title .= 'главная';
-        $this->content = System::template('v_main.php', [
+        $this->content = system::template('v_main.php', [
             'content_main' => 'ATAR',
             'mainmenu' => $this->mainmenu,
             'breadcrumb' => [
@@ -48,7 +48,7 @@ class Filial extends Client
 
         $this->title = 'Справочник filial';
 
-        $this->content = System::template('v_filial.php',
+        $this->content = system::template('v_filial.php',
             ['content' => $this->filial_all,
              'mainmenu' => $this->mainmenu,
              'breadcrumb' => [

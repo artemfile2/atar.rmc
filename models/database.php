@@ -1,12 +1,12 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use PDO;
 
 include_once 'config.php';
 
-class Database {
+class database {
 
     protected static $db;
     private $host = HOST;
