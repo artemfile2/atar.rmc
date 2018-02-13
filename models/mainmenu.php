@@ -1,9 +1,9 @@
 <?php
 
-namespace Models;
+namespace models;
 
 
-class MainMenu
+class mainmenu
 {
     public function Menu(){
         return $menu = [
@@ -26,6 +26,7 @@ class MainMenu
                 'active' => false,
             ],
             'exit' => [
+                'link' => '/auth/logout',
                 'name' => 'Выйти',
                 'active' => false,
             ],

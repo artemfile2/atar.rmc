@@ -1,10 +1,10 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Auth;
+use models\auth;
 
-abstract class Base{
+abstract class base{
 
     protected $params;
     protected $auth;

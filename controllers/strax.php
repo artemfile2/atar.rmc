@@ -1,23 +1,23 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Strax as ModelStrax;
-use Models\System;
-use Models\MainMenu;
+use models\strax as ModelStrax;
+use models\system;
+use models\mainmenu;
 
-class Strax extends Client
+class strax extends client
 {
     private $mainmenu;
     private $straxid;
 
     public function __construct(){
 
-        $this->mainmenu = (new MainMenu())->Menu();
+        $this->mainmenu = (new mainmenu())->Menu();
 
         $this->straxid = (new ModelStrax())->All();
 
-        $this->auth = (new Auth())->check();
+        $this->auth = (new auth())->check();
 
         if(!$this->auth) {
             header("Location: " . ROOT . 'auth/login');
@@ -35,7 +35,7 @@ class Strax extends Client
 
         $this->title = 'Справочник strax';
 
-        $this->content = System::template('v_strax.php',
+        $this->content = system::template('v_strax.php',
             ['content' => $this->straxid,
              'mainmenu' => $this->mainmenu,
              'breadcrumb' => [
@@ -56,7 +56,7 @@ class Strax extends Client
 
         $this->title = 'Справочник strax';
 
-        $this->content = System::template('v_strax.php',
+        $this->content = system::template('v_strax.php',
             ['content' => $straxid,
              'mainmenu' => $this->mainmenu,
              'breadcrumb' => [

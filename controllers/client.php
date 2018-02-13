@@ -1,11 +1,11 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\System;
-use Models\MainMenu;
+use models\system;
+use models\mainmenu;
 
-abstract class Client extends Base{
+abstract class client extends base{
     protected $title;
     protected $content;
     protected $params;
@@ -18,10 +18,10 @@ abstract class Client extends Base{
 
     public function render(){
 
-            $menu = new MainMenu();
+            $menu = new mainmenu();
             $mainmenu = $menu->Menu();
 
-            $html = System::template('base.php', [
+            $html = system::template('base.php', [
                 'title' => $this->title,
                 'content' => $this->content,
                 'mainmenu' => $mainmenu
@@ -33,6 +33,6 @@ abstract class Client extends Base{
     public function show404()
     {
         $this->title = 'Страница не найдена';
-        $this->content = System::template('v_404.php');
+        $this->content = system::template('v_404.php');
     }
 }

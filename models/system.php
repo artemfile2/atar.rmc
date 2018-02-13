@@ -1,13 +1,13 @@
 <?php
 
-namespace Models;
+namespace models;
 
-class System
+class system
 {
     public static function template($path, $array = []){
         extract($array);
         ob_start();
-            include "View/{$path}";
+            include "view/{$path}";
         return ob_get_clean();
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Database;
-use Models\System;
+use models\database;
+use models\system;
 
-class Auth extends Client
+class auth extends client
 {
 
     public function check(){
@@ -15,7 +15,7 @@ class Auth extends Client
                 $password = trim($_COOKIE['password']);
 
                 $sql = "SELECT * FROM users WHERE login LIKE :login";
-                $queryDb = (new Database())->getDb();
+                $queryDb = (new database())->getDb();
                 $query = $queryDb->prepare($sql);
                 $query->bindParam(':login', $login);
                 $query->execute();
@@ -40,7 +40,7 @@ class Auth extends Client
             $password = trim($_POST['password']);
 
             $sql = "SELECT * FROM users WHERE login LIKE :login";
-            $queryDb = (new Database())->getDb();
+            $queryDb = (new database())->getDb();
             $query = $queryDb->prepare($sql);
             $query->bindParam(':login', $login);
             $query->execute();
@@ -64,12 +64,12 @@ class Auth extends Client
 
         $this->title = 'Авторизация';
 
-        $this->content = System::template('v_login.php', [
+        $this->content = system::template('v_login.php', [
             'msg' => $this->msg,
             ]);
     }
 
-    public function logout(){
+    public function action_logout(){
         if($this->params[0] === 'auth' && $this->params[1] === 'logout') {
             unset($_SESSION['auth']);
 
