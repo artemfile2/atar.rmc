@@ -30,16 +30,15 @@ $params = $params_arr[0] ?? 'filial';
 $controllers = ['filial', 'strax', 'pages', 'auth'];
 
 if (in_array($params, $controllers)) {
-    $contr_name = 'controllers\\' . $params; //ucfirst($params);
+    $contr_name = 'controllers\\' . ucfirst($params);
     $action = isset($params_arr[1]) ? 'action_' . $params_arr[1] : 'action_index';
 }
 else{
-    $contr_name = 'controllers\\' . 'pages'; //ucfirst('pages');
+    $contr_name = 'controllers\\' . ucfirst('pages');
     $action = 'show404';
 }
 
 $controller = new $contr_name();
-//echo '<hr>'.var_dump($controller);
 
 $controller->load($params_arr);
 

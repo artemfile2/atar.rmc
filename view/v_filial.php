@@ -20,9 +20,15 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
-                    foreach ($breadcrumb as $item){
-                        echo '<li class="breadcrumb-item">'.$item.'</li>';
-                    }
+                foreach ($breadcrumb as $item=>$value){
+                    echo '<li class="breadcrumb-item">';
+                    if (isset($value)){
+                        echo '<a href="' . $value . '">' . $item . '</a>';
+                    } else {
+                        echo $item;
+                    };
+                    echo '</li>';
+                }
                 ?>
             </ol>
         </nav>
@@ -44,9 +50,9 @@
             ?>
             <tr>
                 <td><?= $i++ ?></td>
-                <td><a href="<?='/strax/one/'. $item['KOD']?>"><?=$item['KOD']?></a></td>
-                <td><a href="<?='/strax/one/'. $item['KOD']?>"><?=$item['NAME']?></a></td>
-                <td><a href="<?='/strax/one/'. $item['KOD']?>"><?=$item['ZAV']?></a></td>
+                <td><a href="<?='/strax/depart/'. $item['KOD']?>"><?=$item['KOD']?></a></td>
+                <td><a href="<?='/strax/depart/'. $item['KOD']?>"><?=$item['NAME']?></a></td>
+                <td><a href="<?='/strax/depart/'. $item['KOD']?>"><?=$item['ZAV']?></a></td>
                 <td><a href="#">Изменить</a></td>
                 <td><a href="#">Удалить</a></td>
             </tr>
