@@ -15,7 +15,7 @@ class filial extends client
 
         $this->mainmenu = (new mainmenu())->Menu();
 
-        $this->filial_all = (new Model())->All();
+        $this->filial_all = Model::getInstance()->All();
 
         $this->auth = (new auth())->check();
 
@@ -28,12 +28,15 @@ class filial extends client
     public function action_index()
     {
 
+        $menuActive = $this->mainmenu;
+        $menuActive['index_list']['active'] = true;
+
         $this->title .= 'главная';
         $this->content = system::template('v_main.php', [
             'content_main' => 'ATAR',
-            'mainmenu' => $this->mainmenu,
+            'mainmenu' => $menuActive,
             'breadcrumb' => [
-                'Главная',
+                'Главная' => null,
                 ]
             ]);
     }
@@ -46,14 +49,17 @@ class filial extends client
             return;
         }
 
+        $menuActive = $this->mainmenu;
+        $menuActive['index_list']['active'] = true;
+
         $this->title = 'Справочник filial';
 
         $this->content = system::template('v_filial.php',
             ['content' => $this->filial_all,
-             'mainmenu' => $this->mainmenu,
+             'mainmenu' => $menuActive,
              'breadcrumb' => [
-                 'Главная',
-                 'Справочник filial'
+                 'Главная' => ROOT . 'filial/index',
+                 'Тарификационный список' => null,
                 ]
             ]);
     }

@@ -5,8 +5,16 @@ namespace models;
 class strax{
     protected $db;
     protected $m_db;
+    private static $instance;
 
-    public function __construct(){
+    public function getInstance(){
+        if (!isset(self::$instance)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
+    protected function __construct(){
         $this->m_db = new database();
         $this->db = $this->m_db->getDb();
     }
@@ -34,10 +42,11 @@ class strax{
     {
         $id = (string)($id);
 
-        $sql = "SELECT * FROM strax WHERE tabnum='$id'";
+        $sql = "SELECT * FROM strax WHERE tabn LIKE :id";
         $query = $this->db->prepare($sql);
+        $query->bindParam(':id', $id);
         $query->execute();
 
-        return $query->fetchAll();
+        return $query->fetch();
     }
 }
