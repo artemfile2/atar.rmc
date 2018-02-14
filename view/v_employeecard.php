@@ -1,23 +1,23 @@
-<div class="col-3 menu">
-    <?php
-        foreach ($mainmenu as $menu){
-            $menu['active'] ? 'active' : '';
-            if ($menu['active']){
-                $linkClass = "btn btn-primary btn-lg btn-block active";
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Меню</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <?php
+            foreach ($mainmenu as $menu){
+                $active = $menu['active'] ? 'active' : '';
+                echo '<li class="nav-item ' . $active . '">';
+                echo '<a class="nav-link" href="'.$menu['link'].'">'.$menu['name'].'</a>';
+                echo '</li>';
             }
-            else{
-                $linkClass = "btn btn-secondary btn-lg btn-block";
-            }
-            $str = '<a href="'.$menu['link'].'" class="'.$linkClass.'" 
-                                   role="button"
-                                   >'.$menu['name'].'</a>';
-            echo $str;
-        }
-    ?>
-</div>
+            ?>
+        </ul>
+    </div>
+</nav>
 
-<div class="col-7 content">
-
+<div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <?php
@@ -33,7 +33,18 @@
             ?>
         </ol>
     </nav>
+</div>
 
+<div class="col-md-4 order-md-2 mb-4">
+    <div class="col-12 btn btn-outline-success">
+        Добавить
+    </div>
+    <div class="col-12 btn btn-outline-success">
+        BCgjkmpjdfnm
+    </div>
+</div>
+
+<div>
     <form>
         <div class="form-group">
             <label for="tabnum">Табельный номер</label>
@@ -64,10 +75,4 @@
         <button type="submit" class="btn btn-primary">Печать</button>
         <button type="submit" class="btn btn-primary">Закрыть</button>
     </form>
-</div>
-
-<div class="col-2 menu">
-    <div class="col-12 btn btn-outline-success">
-        Добавить
-    </div>
 </div>

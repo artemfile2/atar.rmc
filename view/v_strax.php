@@ -1,59 +1,50 @@
-    <div class="col-3 menu">
-        <?php
-        //echo '<pre>' . print_r($mainmenu) . '</pre>';
-            foreach ($mainmenu as $menu){
-                $menu['active'] ? 'active' : '';
-                if ($menu['active']){
-                    $linkClass = "btn btn-primary btn-lg btn-block active";
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Меню</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <?php
+                foreach ($mainmenu as $menu){
+                    $active = $menu['active'] ? 'active' : '';
+                    echo '<li class="nav-item ' . $active . '">';
+                    echo '<a class="nav-link" href="'.$menu['link'].'">'.$menu['name'].'</a>';
+                    echo '</li>';
                 }
-                else{
-                    $linkClass = "btn btn-secondary btn-lg btn-block";
-                }
-                $str = '<a href="'.$menu['link'].'" class="'.$linkClass.'" 
-                                           role="button"
-                                           >'.$menu['name'].'</a>';
-                echo $str;
-            }
-        ?>
+                ?>
+            </ul>
+        </div>
+    </nav>
 
-        <!--Array (
-            [index_list] => Array (
-                [link] => /filial/all
-                [name] => Тарификационный список
-                [active] => )
-            [employees] => Array (
-                [link] => /strax/all
-                [name] => Сотрудники
-                [active] => )
-            [reference] => Array (
-                [name] => Справочники
-                [active] => )
-            [about] => Array (
-                [name] => О программе
-                [active] => )
-            [exit] => Array (
-                [link] => /auth/logout
-                [name] => Выйти
-                [active] => ) ) -->
-    </div>
-
-    <div class="col-7 content">
+    <div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <?php
-                    foreach ($breadcrumb as $item=>$value){
-                        echo '<li class="breadcrumb-item">';
-                                if (isset($value)){
-                                    echo '<a href="' . $value . '">' . $item . '</a>';
-                                } else {
-                                    echo $item;
-                                };
-                        echo '</li>';
-                    }
+                foreach ($breadcrumb as $item=>$value){
+                    echo '<li class="breadcrumb-item">';
+                    if (isset($value)){
+                        echo '<a href="' . $value . '">' . $item . '</a>';
+                    } else {
+                        echo $item;
+                    };
+                    echo '</li>';
+                }
                 ?>
             </ol>
         </nav>
+    </div>
 
+    <div class="col-md-4 order-md-2 mb-4">
+        <div class="col-12 btn btn-outline-success">
+            Добавить
+        </div>
+        <div class="col-12 btn btn-outline-success">
+            BCgjkmpjdfnm
+        </div>
+    </div>
+
+    <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
             <tr>
