@@ -10,22 +10,26 @@
 </head>
 <body>
 
-    <div class="container-fluid">
-        <div class="row wrapper">
-            <div class="col-sm header">
-                <a href="#" class="brand-logo right">AtarRMC</a>
-                <p>header</p>
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 pt-1">Header</div>
+                <div class="col-4 text-center">Title</div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <a href="#" class="brand-logo right">AtarRMC</a>
+                </div>
             </div>
-        </div>
-        <div class="row">
+        </header>
+        <!--<div class="row">-->
             <?php
                 echo $content;
             ?>
-        </div>
+        <!--</div>-->
 
-        <div class="row">
-            <div class="col footer"><p>footer</p></div>
-        </div>
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="col footer">footer</p>
+            <p class="col footer"><p>© 2017-2018</p>
+        </footer>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

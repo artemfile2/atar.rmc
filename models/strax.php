@@ -2,51 +2,38 @@
 
 namespace models;
 
-class strax{
-    protected $db;
-    protected $m_db;
-    private static $instance;
+use core\database;
 
-    public function getInstance(){
-        if (!isset(self::$instance)) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
+class strax{
+
+    use \core\singleton;
+
+    protected $db;
 
     protected function __construct(){
-        $this->m_db = new database();
-        $this->db = $this->m_db->getDb();
+        $this->db = database::getInstance();
     }
 
     public function All()
     {
-        $query = $this->db
-            ->query('SELECT * FROM strax ORDER BY kod');
-
-        return $query->fetchAll();
+        return $this->db
+            ->select("SELECT * FROM strax ORDER BY kod");
     }
 
     public function NumDepart($id)
     {
         $id = (string)($id);
-
-        $sql = "SELECT * FROM strax WHERE kod='$id' ORDER BY kod,tab";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetchAll();
+        $res = $this->db
+            ->select("SELECT * FROM strax WHERE kod = :id ORDER BY kod,tab", ['id'=>$id]);
+        return $res ?? null;
     }
 
     public function One($id)
     {
         $id = (string)($id);
 
-        $sql = "SELECT * FROM strax WHERE tabn LIKE :id";
-        $query = $this->db->prepare($sql);
-        $query->bindParam(':id', $id);
-        $query->execute();
-
-        return $query->fetch();
+        $res = $this->db
+            ->select("SELECT * FROM strax WHERE tabn = :id ORDER BY kod,tab", ['id'=>$id]);
+        return $res ?? null;
     }
 }
