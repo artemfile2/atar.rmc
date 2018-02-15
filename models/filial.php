@@ -2,29 +2,23 @@
 
 namespace models;
 
+use core\database;
+
 class filial{
+
+    use \core\singleton;
+
     protected $db;
     protected $m_db;
-    private static $instance;
-
-    public function getInstance(){
-        if (!isset(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
 
     protected function __construct(){
-        $this->m_db = new database();
-        $this->db = $this->m_db->getDb();
+        $this->db = database::getInstance();
     }
 
     public function All()
     {
-        $query = $this->db
-            ->query('SELECT * FROM filial ORDER BY kod');
-
-        return $query->fetchAll();
+        return $this->db
+            ->select("SELECT * FROM filial ORDER BY kod");
     }
 
 }
