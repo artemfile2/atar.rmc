@@ -1,6 +1,8 @@
-<div class="btn btn-primary btn-lg btn-block">
-    <p>404</p>
-    <p>Not found</p>
+<div class="jumbotron text-center">
+    <h1 class="cover-heading">404</h1>
+    <h2 class="cover-heading">Page not found</h2>
     <hr>
-    <a href="#">На главную</a>
+    <p class="lead">
+        <a href="<?=ROOT?>" class="btn btn-lg btn-secondary">На главную</a>
+    </p>
 </div>

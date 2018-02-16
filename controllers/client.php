@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-use models\system;
+use core\system;
 use models\mainmenu;
 
 abstract class client extends base{

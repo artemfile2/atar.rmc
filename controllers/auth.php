@@ -3,7 +3,7 @@
 namespace controllers;
 
 use core\database;
-use models\system;
+use core\system;
 
 class auth extends client
 {

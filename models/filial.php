@@ -2,9 +2,9 @@
 
 namespace models;
 
-use core\database;
+use core\model;
 
-class filial{
+class filial extends model{
 
     use \core\singleton;
 
@@ -12,13 +12,8 @@ class filial{
     protected $m_db;
 
     protected function __construct(){
-        $this->db = database::getInstance();
-    }
-
-    public function All()
-    {
-        return $this->db
-            ->select("SELECT * FROM filial ORDER BY kod");
+        parent::__construct();
+        $this->table = 'filial';
     }
 
 }

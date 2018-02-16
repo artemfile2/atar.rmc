@@ -2,38 +2,38 @@
 
 namespace models;
 
-use core\database;
+use core\model;
 
-class strax{
+class strax extends model{
 
     use \core\singleton;
 
     protected $db;
 
     protected function __construct(){
-        $this->db = database::getInstance();
-    }
-
-    public function All()
-    {
-        return $this->db
-            ->select("SELECT * FROM strax ORDER BY kod");
+        parent::__construct();
+        $this->table = 'strax';
+        $this->pk = 'tabn';
     }
 
     public function NumDepart($id)
     {
         $id = (string)($id);
+        $this->pk = 'kod';
         $res = $this->db
-            ->select("SELECT * FROM strax WHERE kod = :id ORDER BY kod,tab", ['id'=>$id]);
+            ->select("SELECT * FROM {$this->table} WHERE {$this->pk} = :id ORDER BY kod,tab",
+                ['id'=>$id]);
         return $res ?? null;
     }
 
-    public function One($id)
+    public function NameDepart($id)
     {
         $id = (string)($id);
-
+        $this->pk = 'kod';
         $res = $this->db
-            ->select("SELECT * FROM strax WHERE tabn = :id ORDER BY kod,tab", ['id'=>$id]);
+            ->select("SELECT * FROM filial WHERE {$this->pk} = :id",
+                ['id'=>$id],
+                1);
         return $res ?? null;
     }
 }
