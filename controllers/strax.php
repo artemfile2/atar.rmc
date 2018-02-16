@@ -3,8 +3,8 @@
 namespace controllers;
 
 use models\strax as ModelStrax;
-use models\system;
 use models\mainmenu;
+use core\system;
 
 class strax extends client
 {
@@ -50,6 +50,9 @@ class strax extends client
 
     public function action_depart()
     {
+        $NameFilial = ModelStrax::getInstance()
+            ->NameDepart($this->params[2]);
+
         $straxid = ModelStrax::getInstance()
             ->NumDepart($this->params[2]);
 
@@ -69,7 +72,7 @@ class strax extends client
              'breadcrumb' => [
                  'Главная' => ROOT . 'filial/index',
                  'Сотрудники' => ROOT . 'strax/all',
-                 'Отдел '.$this->params[2] => null,
+                 'Отдел '.$this->params[2] .' '. $NameFilial['NAME'] => null,
              ]
             ]);
     }
@@ -84,18 +87,21 @@ class strax extends client
             return;
         }
 
+        $tabdepart = mb_substr($this->params[2], 0, 3);
+        $NameFilial = ModelStrax::getInstance()
+            ->NameDepart($tabdepart);
+
         $menuActive = $this->mainmenu;
         $menuActive['employees']['active'] = true;
 
         $this->title = 'Справочник strax';
-        $tabdepart = mb_substr($this->params[2], 0, 3);
         $this->content = system::template('v_employeecard.php',
             ['content' => $straxid,
                 'mainmenu' => $menuActive,
                 'breadcrumb' => [
                     'Главная' => ROOT . 'filial/index',
                     'Сотрудники' => ROOT . 'strax/all',
-                    'Отдел '.$tabdepart => ROOT . 'strax/depart/'.$tabdepart,
+                    'Отдел '.$tabdepart .' '.$NameFilial['NAME'] => ROOT . 'strax/depart/'.$tabdepart,
                     'Карточка сотрудника' => null,
                 ]
             ]);
