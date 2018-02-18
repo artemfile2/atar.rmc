@@ -4,14 +4,26 @@
     include 'v_breadcrumb.php';
 ?>
 
-    <div class="col-md-4 order-md-2 mb-4">
-        <div class="col-12 btn btn-outline-success">
-            Добавить
-        </div>
-        <div class="col-12 btn btn-outline-success">
-            BCgjkmpjdfnm
-        </div>
-    </div>
+    <ul class="list-group mb-3">
+        <li class="list-group-item list-group-item-info d-flex justify-content-between lh-condensed">
+            Заведующий отделением
+            <strong>
+                <?= $nameMentor?>
+            </strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+            Количество рабочих
+            <strong>
+                <?= count($content);?>
+            </strong>
+        </li>
+        <li class="list-group-item list-group-item-info d-flex justify-content-between lh-condensed">
+            Последнее обновление
+            <strong>
+                <?= $LastRec['DATET']?>
+            </strong>
+        </li>
+    </ul>
 
     <div class="table-responsive">
         <table class="table table-striped table-sm">

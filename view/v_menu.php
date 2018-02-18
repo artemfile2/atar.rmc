@@ -14,5 +14,8 @@
             }
             ?>
         </ul>
+        <div class="form-inline">
+            <p class="text-right"><?=$_SESSION['userName'];?></p>
+        </div>
     </div>
 </nav>

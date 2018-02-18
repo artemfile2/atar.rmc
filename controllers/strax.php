@@ -53,6 +53,9 @@ class strax extends client
         $NameFilial = ModelStrax::getInstance()
             ->NameDepart($this->params[2]);
 
+        $LastRec = ModelStrax::getInstance()
+            ->LastRecord($this->params[2], 'kod');
+
         $straxid = ModelStrax::getInstance()
             ->NumDepart($this->params[2]);
 
@@ -69,6 +72,8 @@ class strax extends client
         $this->content = system::template('v_strax.php',
             ['content' => $straxid,
              'mainmenu' => $menuActive,
+             'nameMentor' => $NameFilial['ZAV'],
+             'LastRec' => $LastRec,
              'breadcrumb' => [
                  'Главная' => ROOT . 'filial/index',
                  'Сотрудники' => ROOT . 'strax/all',
@@ -91,6 +96,9 @@ class strax extends client
         $NameFilial = ModelStrax::getInstance()
             ->NameDepart($tabdepart);
 
+        $LastRec = ModelStrax::getInstance()
+            ->LastRecord($this->params[2]);
+
         $menuActive = $this->mainmenu;
         $menuActive['employees']['active'] = true;
 
@@ -98,6 +106,8 @@ class strax extends client
         $this->content = system::template('v_employeecard.php',
             ['content' => $straxid,
                 'mainmenu' => $menuActive,
+                'nameMentor' => $NameFilial['ZAV'],
+                'LastRec' => $LastRec,
                 'breadcrumb' => [
                     'Главная' => ROOT . 'filial/index',
                     'Сотрудники' => ROOT . 'strax/all',

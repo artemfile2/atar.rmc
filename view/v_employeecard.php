@@ -6,14 +6,20 @@
 
 
 
-<div class="col-md-4 order-md-2 mb-4">
-    <div class="col-12 btn btn-outline-success">
-        Добавить
-    </div>
-    <div class="col-12 btn btn-outline-success">
-        BCgjkmpjdfnm
-    </div>
-</div>
+<ul class="list-group mb-3">
+    <li class="list-group-item list-group-item-info d-flex justify-content-between lh-condensed alert-info">
+        Заведующий отделением
+        <strong>
+            <?= $nameMentor?>
+        </strong>
+    </li>
+    <li class="list-group-item list-group-item-info d-flex justify-content-between lh-condensed">
+        Последнее обновление
+        <strong>
+            <?= $LastRec['DATET']?>
+        </strong>
+    </li>
+</ul>
 
 <div>
     <form>

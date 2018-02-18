@@ -14,12 +14,11 @@ class auth extends client
                 $login = trim($_COOKIE['login']);
                 $password = trim($_COOKIE['password']);
 
-                $sql = "SELECT * FROM users WHERE login LIKE :login";
-                $queryDb = (new database())->getDb();
-                $query = $queryDb->prepare($sql);
-                $query->bindParam(':login', $login);
-                $query->execute();
-                $user = $query->fetch();
+                $user = (new database())
+                    ->select("SELECT * FROM users WHERE login = :login",
+                        ['login' => $login],
+                        1);
+                echo 'check' . var_dump($user);
 
                 if($login == $user['login'] && $password == $user['password']) {
                     $_SESSION['auth'] = true;
@@ -35,23 +34,23 @@ class auth extends client
     }
 
     public function action_login(){
-        if(count($_POST) > 0) {
+        if(isset($_POST['login']) && !empty(trim($_POST['login']))
+            && isset($_POST['password']) && !empty(trim($_POST['password']))) {
             $login = trim($_POST['login']);
             $password = trim($_POST['password']);
 
-            $sql = "SELECT * FROM users WHERE login LIKE :login";
-            $queryDb = (new database())->getDb();
-            $query = $queryDb->prepare($sql);
-            $query->bindParam(':login', $login);
-            $query->execute();
-            $user = $query->fetch();
+            $user = (new database())
+                ->select("SELECT * FROM users WHERE login = :login",
+                    ['login' => $login],
+                    1);
 
             if($login == $user['login'] && $password == $user['password']) {
                 $_SESSION['auth'] = true;
+                $_SESSION['userName'] = $login;
 
                 if(isset($_POST['remember'])) {
-                    setcookie('login', $user['login'], time() + 120);
-                    setcookie('password', $user['password'], time() + 120);
+                    setcookie('login', $user['login'], time() + 3600);
+                    setcookie('password', $user['password'], time() + 3600);
                 }
 
                 header("Location: " . ROOT . 'filial/index');
@@ -72,6 +71,7 @@ class auth extends client
     public function action_logout(){
         if($this->params[0] === 'auth' && $this->params[1] === 'logout') {
             unset($_SESSION['auth']);
+            unset($_SESSION['userName']);
 
             if(isset($_COOKIE['login']) && isset($_COOKIE['password'])) {
                 setcookie('login', '', time() - 3600);
