@@ -4,11 +4,17 @@
     include 'v_breadcrumb.php';
 ?>
 
-<div class="col-md-4 order-md-2 mb-4">
-    <div class="col-12 btn btn-outline-success">
-        Добавить
-    </div>
-    <div class="col-12 btn btn-outline-success">
-        BCgjkmpjdfnm
-    </div>
-</div>
+<ul class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        Количество отделений
+        <strong>
+            10
+        </strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        Последнее обновление
+        <strong>
+            10
+        </strong>
+    </li>
+</ul>

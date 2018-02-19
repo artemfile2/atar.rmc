@@ -36,4 +36,15 @@ class strax extends model{
                 1);
         return $res ?? null;
     }
+
+    public function LastRecord($id, $pk = null)
+    {
+        $id = (string)($id);
+        $this->pk = $pk ?? 'tabn';
+        $res = $this->db
+            ->select("SELECT * FROM {$this->table} WHERE {$this->pk} = :id ORDER BY datet DESC",
+                ['id'=>$id],
+                1);
+        return $res ?? null;
+    }
 }
