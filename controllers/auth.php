@@ -9,6 +9,7 @@ class auth extends client
 {
 
     public function check(){
+        //todo реализовать проверку вводимых пароля и логина
         if(!isset($_SESSION['auth'])) {
             if(isset($_COOKIE['login']) && isset($_COOKIE['password'])) {
                 $login = trim($_COOKIE['login']);
@@ -49,6 +50,8 @@ class auth extends client
                 $_SESSION['userName'] = $login;
 
                 if(isset($_POST['remember'])) {
+
+                    //todo реализовать шифрование пароля
                     setcookie('login', $user['login'], time() + 3600);
                     setcookie('password', $user['password'], time() + 3600);
                 }

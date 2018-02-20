@@ -11,6 +11,8 @@ class strax extends client
     private $mainmenu;
     private $straxid;
 
+    //todo добавить хелпер с функцией изменения вывода вида даты
+
     public function __construct(){
 
         $this->mainmenu = (new mainmenu())->Menu();

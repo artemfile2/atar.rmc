@@ -32,4 +32,5 @@ class database {
         return is_null($oneRec) ? $query->fetchAll() : $query->fetch();
     }
 
+    //todo добавить функции добавления, редактирования и удаления записи
 }
