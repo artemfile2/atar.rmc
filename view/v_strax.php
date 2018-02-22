@@ -1,6 +1,6 @@
 <?php
     include 'v_menu.php';
-
+    echo '<br>';
     include 'v_breadcrumb.php';
 ?>
 
@@ -20,7 +20,7 @@
         <li class="list-group-item list-group-item-info d-flex justify-content-between lh-condensed">
             Последнее обновление
             <strong>
-                <?= $LastRec['DATET']?>
+                <?= $LastRec;?>
             </strong>
         </li>
     </ul>
