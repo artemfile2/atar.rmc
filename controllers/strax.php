@@ -5,13 +5,12 @@ namespace controllers;
 use models\strax as ModelStrax;
 use models\mainmenu;
 use core\system;
+use helpers\myDate;
 
 class strax extends client
 {
     private $mainmenu;
     private $straxid;
-
-    //todo добавить хелпер с функцией изменения вывода вида даты
 
     public function __construct(){
 
@@ -75,7 +74,7 @@ class strax extends client
             ['content' => $straxid,
              'mainmenu' => $menuActive,
              'nameMentor' => $NameFilial['ZAV'],
-             'LastRec' => $LastRec,
+             'LastRec' => myDate::setDate($LastRec['DATET']),
              'breadcrumb' => [
                  'Главная' => ROOT . 'filial/index',
                  'Сотрудники' => ROOT . 'strax/all',
@@ -109,7 +108,7 @@ class strax extends client
             ['content' => $straxid,
                 'mainmenu' => $menuActive,
                 'nameMentor' => $NameFilial['ZAV'],
-                'LastRec' => $LastRec,
+                'LastRec' => myDate::setDate($LastRec['DATET']),
                 'breadcrumb' => [
                     'Главная' => ROOT . 'filial/index',
                     'Сотрудники' => ROOT . 'strax/all',

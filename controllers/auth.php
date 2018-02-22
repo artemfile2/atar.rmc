@@ -4,16 +4,16 @@ namespace controllers;
 
 use core\database;
 use core\system;
+use helpers\checkString;
 
 class auth extends client
 {
 
     public function check(){
-        //todo реализовать проверку вводимых пароля и логина
         if(!isset($_SESSION['auth'])) {
             if(isset($_COOKIE['login']) && isset($_COOKIE['password'])) {
-                $login = trim($_COOKIE['login']);
-                $password = trim($_COOKIE['password']);
+                $login = checkString::clean($_COOKIE['login']);
+                $password = checkString::clean($_COOKIE['password']);
 
                 $user = (new database())
                     ->select("SELECT * FROM users WHERE login = :login",
@@ -35,10 +35,11 @@ class auth extends client
     }
 
     public function action_login(){
-        if(isset($_POST['login']) && !empty(trim($_POST['login']))
-            && isset($_POST['password']) && !empty(trim($_POST['password']))) {
-            $login = trim($_POST['login']);
-            $password = trim($_POST['password']);
+        $login = checkString::clean($_POST['login']);
+        $password = checkString::clean($_POST['password']);
+
+        if(isset($login) && !empty($login)
+            && isset($password) && !empty($password)) {
 
             $user = (new database())
                 ->select("SELECT * FROM users WHERE login = :login",
