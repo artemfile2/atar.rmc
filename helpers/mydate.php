@@ -3,7 +3,7 @@
 namespace helpers;
 
 
-class myDate
+class mydate
 {
     public static function setDate($date)
     {
