@@ -5,7 +5,7 @@ namespace controllers;
 use models\strax as ModelStrax;
 use models\mainmenu;
 use core\system;
-use helpers\myDate;
+use helpers\mydate;
 
 class strax extends client
 {
@@ -74,7 +74,7 @@ class strax extends client
             ['content' => $straxid,
              'mainmenu' => $menuActive,
              'nameMentor' => $NameFilial['ZAV'],
-             'LastRec' => myDate::setDate($LastRec['DATET']),
+             'LastRec' => mydate::setDate($LastRec['DATET']),
              'breadcrumb' => [
                  'Главная' => ROOT . 'filial/index',
                  'Сотрудники' => ROOT . 'strax/all',
@@ -108,7 +108,7 @@ class strax extends client
             ['content' => $straxid,
                 'mainmenu' => $menuActive,
                 'nameMentor' => $NameFilial['ZAV'],
-                'LastRec' => myDate::setDate($LastRec['DATET']),
+                'LastRec' => mydate::setDate($LastRec['DATET']),
                 'breadcrumb' => [
                     'Главная' => ROOT . 'filial/index',
                     'Сотрудники' => ROOT . 'strax/all',

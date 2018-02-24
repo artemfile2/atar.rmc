@@ -3,7 +3,7 @@
 namespace helpers;
 
 
-class checkString
+class checkstring
 {
     public static function clean($value)
     {

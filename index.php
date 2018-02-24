@@ -2,20 +2,9 @@
 
 session_start();
 
-//error_reporting(E_ALL);
+define('INDEXPATH', __DIR__.DIRECTORY_SEPARATOR);
 
-/*echo 'Document root: '.$_SERVER['DOCUMENT_ROOT'].'<br>';
-echo 'Полный путь к скрипту и его имя: '.$_SERVER['SCRIPT_FILENAME'].'<br>';
-echo 'Имя скрипта: '.$_SERVER['SCRIPT_NAME'];*/
-
-spl_autoload_register(function($classname) {
-    $classname = strtolower($classname);
-    $classname = str_replace('\\', DIRECTORY_SEPARATOR, $classname);
-    //echo 'zxc= '.__DIR__.'='.$classname. '.php<br>' ;
-    //echo dirname(__FILE__) .'='. DIRECTORY_SEPARATOR;
-    //echo __DIR__.DIRECTORY_SEPARATOR.$classname.'<br>';
-    include_once(__DIR__.DIRECTORY_SEPARATOR.$classname . '.php');
-});
+include_once "core/bootstrap.php";
 
 define('ROOT', '/');
 

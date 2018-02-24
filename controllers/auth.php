@@ -4,7 +4,7 @@ namespace controllers;
 
 use core\database;
 use core\system;
-use helpers\checkString;
+use helpers\checkstring;
 
 class auth extends client
 {
@@ -12,8 +12,8 @@ class auth extends client
     public function check(){
         if(!isset($_SESSION['auth'])) {
             if(isset($_COOKIE['login']) && isset($_COOKIE['password'])) {
-                $login = checkString::clean($_COOKIE['login']);
-                $password = checkString::clean($_COOKIE['password']);
+                $login = checkstring::clean($_COOKIE['login']);
+                $password = checkstring::clean($_COOKIE['password']);
 
                 $user = (new database())
                     ->select("SELECT * FROM users WHERE login = :login",
@@ -35,8 +35,8 @@ class auth extends client
     }
 
     public function action_login(){
-        $login = checkString::clean($_POST['login']);
-        $password = checkString::clean($_POST['password']);
+        $login = checkstring::clean($_POST['login']);
+        $password = checkstring::clean($_POST['password']);
 
         if(isset($login) && !empty($login)
             && isset($password) && !empty($password)) {
