@@ -29,6 +29,8 @@ class strax extends client
     public function action_all()
     {
 
+        //todo реализовать постраничный вывод всех сотрудников, тк долго грузит все данные
+
         if ($this->straxid == null){
             $this->show404();
             return;
@@ -116,5 +118,75 @@ class strax extends client
                     'Карточка сотрудника' => null,
                 ]
             ]);
+    }
+
+    public function action_add(){
+
+        if (count($_POST) > 0) {
+            ModelStrax::getInstance()->add($_POST);
+        }
+
+        $tabdepart = mb_substr($this->params[2], 0, 3);
+        $NameFilial = ModelStrax::getInstance()
+            ->NameDepart($tabdepart);
+
+        $menuActive = $this->mainmenu;
+        $menuActive['employees']['active'] = true;
+        $content = [
+            'KOD' => $tabdepart,
+        ];
+        $this->title = 'Справочник strax';
+        $this->content = system::template('v_employeecard.php',['content' => $content,
+            'mainmenu' => $menuActive,
+            'nameMentor' => $NameFilial['ZAV'],
+            'LastRec' => null,
+            'breadcrumb' => [
+                'Главная' => ROOT . 'filial/index',
+                'Сотрудники' => ROOT . 'strax/all',
+                'Отдел '.$tabdepart .' '.$NameFilial['NAME'] => ROOT . 'strax/depart/'.$tabdepart,
+                'Карточка сотрудника - новая запись' => null,
+            ]
+        ]);
+    }
+
+    public function action_edit(){
+
+        if (count($_POST) > 0) {
+            ModelStrax::getInstance()->edit(
+                $this->params[2],
+                $_POST);
+        }
+
+        $straxid = ModelStrax::getInstance()
+            ->One($this->params[2]);
+
+        if ($straxid == null){
+            $this->show404();
+            return;
+        }
+
+        $tabdepart = mb_substr($this->params[2], 0, 3);
+        $NameFilial = ModelStrax::getInstance()
+            ->NameDepart($tabdepart);
+
+        $menuActive = $this->mainmenu;
+        $menuActive['employees']['active'] = true;
+        $this->title = 'Справочник strax';
+        $this->content = system::template('v_employeecard.php',[
+            'content' => $straxid,
+            'mainmenu' => $menuActive,
+            'nameMentor' => $NameFilial['ZAV'],
+            'LastRec' => null,
+            'breadcrumb' => [
+                'Главная' => ROOT . 'filial/index',
+                'Сотрудники' => ROOT . 'strax/all',
+                'Отдел '.$tabdepart .' '.$NameFilial['NAME'] => ROOT . 'strax/depart/'.$tabdepart,
+                'Карточка сотрудника - новая запись' => null,
+            ]
+        ]);
+    }
+
+    public function action_delete(){
+        ModelStrax::getInstance()->del($this->params[2]);
     }
 }

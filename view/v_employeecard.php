@@ -22,17 +22,22 @@
 </ul>
 
 <div>
-    <form>
+    <form method="post">
         <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="tabnum">Табельный номер</label>
+            <div class="col-md-3 mb-3">
+                <label for="tabnum">Номер отдела</label>
                 <input type="text" class="form-control" id="tabnum"
-                       placeholder="Табельный номер" value="<?=$content['TABN']?>">
+                       placeholder="Номер отдела" name="KOD" value="<?=$content['KOD']?>">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="tabnum">Номер сотрудника</label>
+                <input type="text" class="form-control" id="tabnum"
+                       placeholder="Номер сотрудника" name="TAB" value="<?=$content['TAB']?>">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="InputFIO">Ф.И.О.</label>
                 <input type="text" class="form-control" id="InputFIO"
-                       placeholder="Ф.И.О." value="<?=$content['FIO']?>">
+                       placeholder="Ф.И.О." name="FIO" value="<?=$content['FIO']?>">
             </div>
         </div>
 
@@ -40,17 +45,17 @@
             <div class="col-md-4 mb-3">
                 <label for="InputСategory">Группа</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Группа" value="<?=$content['GO']?>">
+                       placeholder="Группа" name="GO" value="<?=$content['GO']?>">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="InputСategory">Категория</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Категория" value="<?=$content['KAT']?>">
+                       placeholder="Категория" name="KAT" value="<?=$content['KAT']?>">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="InputСategory">Должность</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Должность" value="<?=$content['DLG']?>">
+                       placeholder="Должность" name="DLG" value="<?=$content['DLG']?>">
             </div>
         </div>
 
@@ -58,22 +63,22 @@
             <div class="col-md-6 mb-3">
                 <label for="InputСategory">Квалификация</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Квалификация" value="<?=$content['KVAL3']?>">
+                       placeholder="Квалификация" name="KVAL3" value="<?=$content['KVAL3']?>">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="InputСategory">Квалификация дата</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Квалификация дата" value="<?=$content['DATKV3']?>">
+                       placeholder="Квалификация дата" name="DATKV3" value="<?=$content['DATKV3']?>">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="InputСategory">Стаж работы</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Стаж работы" value="<?=$content['STD']?>">
+                       placeholder="Стаж работы" name="STD" value="<?=$content['STD']?>">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="InputСategory">Стаж работы в годах</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Стаж работы" value="<?=$content['STAJ19']?>">
+                       placeholder="Стаж работы" name="STAJ19" value="<?=$content['STAJ19']?>">
             </div>
         </div>
 
@@ -81,27 +86,27 @@
             <div class="col-md-2 mb-3">
                 <label for="InputСategory">Надбавки за стаж в %</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Надбавки за стаж" value="<?=$content['NADB20']?>">
+                       placeholder="Надбавки за стаж" name="NADB20"  value="<?=$content['NADB20']?>">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="InputСategory">Надбавки за стаж </label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Надбавки за стаж" value="<?=$content['NADB21']?>">
+                       placeholder="Надбавки за стаж" name="NADB21" value="<?=$content['NADB21']?>">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="InputСategory">Другие надбавки в %</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Надбавки в процентах" value="<?=$content['POV12']?>">
+                       placeholder="Надбавки в процентах" name="POV12" value="<?=$content['POV12']?>">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="InputСategory">Другие надбавки</label>
                 <input type="text" class="form-control" id="InputСategory"
-                       placeholder="Надбавки за стаж" value="<?=$content['POV13']?>">
+                       placeholder="Надбавки за стаж" name="POV13" value="<?=$content['POV13']?>">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="InputPosition">Прочие надбавки</label>
                 <input type="text" class="form-control" id="InputPosition"
-                       placeholder="Прочие надбавки" value="<?=$content['PROC']?>">
+                       placeholder="Прочие надбавки" name="PROC" value="<?=$content['PROC']?>">
             </div>
         </div>
 
@@ -111,10 +116,11 @@
                    placeholder="Месячный фонд" value="<?=$content['MFIT']?>">
         </div>
 
+        <br>
+
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-            <button type="submit" class="btn btn-primary">Печать</button>
-            <button type="submit" class="btn btn-primary">Закрыть</button>
+            <input type="submit" value="Сохранить" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">Отмена</button>
         </div>
     </form>
 </div>

@@ -11,6 +11,9 @@
             <?= count($content)?>
         </strong>
     </li>
+    <li class="list-group-item list-group-item-success d-flex justify-content-between lh-condensed">
+        <a href="/filial/add">Добавить отделение</a>
+    </li>
 </ul>
 
     <div class="table-responsive">

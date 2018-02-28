@@ -32,5 +32,52 @@ class database {
         return is_null($oneRec) ? $query->fetchAll() : $query->fetch();
     }
 
-    //todo добавить функции добавления, редактирования и удаления записи
+    public function insert($table, $params){
+        $keys = [];
+        $masks = [];
+
+        foreach($params as $k => $v){
+            $keys[] = $k;
+            $masks[] = ':' . $k;
+        }
+
+        $fields = implode(', ', $keys);
+        $values = implode(', ', $masks);
+
+        $sql = "INSERT INTO {$table} ({$fields}) VALUES ({$values})";
+
+        $query = $this->db->prepare($sql);
+        $query->execute($params);
+
+        return $this->db->lastInsertId();
+    }
+
+    public function update($table, $obj, $where, $params = []){
+        $pairs = [];
+
+        foreach($obj as $k => $v){
+            $pairs[] = "$k=:$k";
+        }
+
+        $pairs_str = implode(',', $pairs);
+        $sql = "UPDATE $table SET $pairs_str WHERE $where";
+        //$sql = "UPDATE $table SET $pairs_str WHERE tabn = '017232'";
+        $merge = array_merge($obj, $params);
+        //todo не работает нормально обновление данных, проверить
+        echo $sql;
+        echo '<br>';
+        echo '<pre>'.print_r($merge).'</pre>';
+
+        $query = $this->db->prepare($sql);
+        $query->execute($merge);
+
+        return $query->rowCount();
+    }
+
+    public function delete($table, $where, $params = []){
+        $sql = "DELETE FROM $table WHERE $where";
+        $query = $this->db->prepare($sql);
+        $query->execute($params);
+        return $query->rowCount(); //rowCount - количество затронутых строк
+    }
 }

@@ -23,6 +23,10 @@
                 <?= $LastRec;?>
             </strong>
         </li>
+        <br>
+        <li class="list-group-item list-group-item-success d-flex justify-content-between lh-condensed">
+            <a href="/strax/add/<?=$content[0]['KOD']?>">Добавить сотрудника</a>
+        </li>
     </ul>
 
     <div class="table-responsive">
@@ -50,8 +54,8 @@
                 <td><a href="<?='/strax/one/'. $item['TABN']?>"><?=$item['GO']?></a></td>
                 <td><a href="<?='/strax/one/'. $item['TABN']?>"><?=$item['KAT']?></a></td>
                 <td><a href="<?='/strax/one/'. $item['TABN']?>"><?=$item['DLG']?></a></td>
-                <td><a href="#">Изменить</a></td>
-                <td><a href="#">Удалить</a></td>
+                <td><a href="<?='/strax/edit/'. $item['TABN']?>">Изменить</a></td>
+                <td><a href="<?='/strax/delete/'. $item['TABN']?>">Удалить</a></td>
             </tr>
             <?php
                 endforeach;
