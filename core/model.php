@@ -42,4 +42,5 @@ abstract class model
     {
         return $this->db->delete($this->table, "{$this->pk}=:pk", ['pk' => $pk]);
     }
+
 }

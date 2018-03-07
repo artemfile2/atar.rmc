@@ -80,4 +80,18 @@ class database {
         $query->execute($params);
         return $query->rowCount(); //rowCount - количество затронутых строк
     }
+
+    public function checkTable(string $table){
+        $result = $this->db->query("SHOW TABLES LIKE '{$table}'");
+        $query = $result !== false && $result->rowCount() > 0;
+        return $query;
+    }
+
+    public function createTable(string $sql){
+        try {
+            $this->db->exec($sql);
+        } catch(PDOException $e) {
+            echo 'Ошибка: ' . $e->getMessage();
+        }
+    }
 }
