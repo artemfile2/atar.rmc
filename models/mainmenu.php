@@ -21,8 +21,9 @@ class mainmenu
                 'name' => 'Справочники',
                 'active' => false,
             ],
-            'about' => [
-                'name' => 'О программе',
+            'uploadxml' => [
+                'link' => '/uploadxml/XMLload',
+                'name' => 'Загрузка XML',
                 'active' => false,
             ],
             'exit' => [

@@ -16,7 +16,7 @@ if($params_arr[$cnt - 1] === ''){
 }
 
 $params = $params_arr[0] ?? 'filial';
-$controllers = ['filial', 'strax', 'pages', 'auth'];
+$controllers = ['filial', 'strax', 'pages', 'auth', 'uploadxml'];
 
 if (in_array($params, $controllers)) {
     $contr_name = 'controllers\\' . ucfirst($params);
