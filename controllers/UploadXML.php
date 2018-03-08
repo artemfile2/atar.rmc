@@ -8,17 +8,16 @@ use models\ModelXML;
 class UploadXML extends client
 {
     public $fileXML = './files/zip/ht05s50_1802052310o.zip';
+    //public $fileXML = './files/zip/ht05s50_1802051702p.zip';
+    private $pathXML = './files/xml/';
     private $timestart;
-
-    /*public function __construct(){
-        ModelXML::getInstance();
-    }*/
 
     public function action_XMLload()
     {
         $this->extractZIP();
 
-        $ht_file = './files/xml/ht05s50_1802052310o.XML';
+        $nameFile = basename($this->fileXML, '.zip');
+        $ht_file = $this->pathXML . $nameFile .'.XML';
 
         if (file_exists($ht_file)) {
             // если файл существует, то подключаемся к нему
@@ -28,23 +27,17 @@ class UploadXML extends client
             // если файл не существует, выводит ошибку
             exit('Файл "'.$ht_file.'" не существует!');
         }
-        echo 'Время выполнения скрипта: '.(microtime(true) - $this->timestart).' сек.';
+        echo '<br>Время выполнения скрипта: '.(microtime(true) - $this->timestart).' сек.';
     }
 
     private function XMLtoTable($xml){
-        $pc = 0;
-        $sl = 0;
-        $us = 0;
 
         ModelXML::getInstance()
             ->NewTable($this->fileXML);
 
+        $short_name = substr(basename($this->fileXML, '.zip'), 8, 10);
 
         foreach($xml->ZAP as $zap){
-            $pc++;
-            echo "zap: ".$zap->N_ZAP.'<br>'; // вывод доп информации для теста и тд
-            //echo "pac: ".$zap->PACIENT->ID_PAC.'<br>';
-
             $paramsxml = [
                 'ID_PAC' => $zap->PACIENT->ID_PAC,
                 'VPOLIS' => $zap->PACIENT->VPOLIS,
@@ -58,39 +51,99 @@ class UploadXML extends client
                 'NOVOR' => $zap->PACIENT->NOVOR,
                 'VNOV_D' => $zap->PACIENT->VNOV_D,
             ];
-
-            $sql = "INSERT INTO pacient_1802052310 (id_pac, vpolis, s_polis, npolis,
-                    st_okato, smo, smo_ogrn, smo_ok, smo_nam, novor, vnov_d) VALUES (:idpac,
-                     :vpolis, :spolis, :npolis, :stokato, :smo, :smoogrn, :smook, :smo_nam,
-                     :novor, :vnovd)";
+            
 
             ModelXML::getInstance()
-                ->fillTable('pacient_1802052310', $paramsxml);
+                ->fillTable('pacient_'.$short_name, $paramsxml);
 
-            /*foreach ($zap->SLUCH as $sluch){
-                $sl++;
-                echo 'slu:-' . $sluch->IDCASE.'<br>';
+            foreach ($zap->SLUCH as $sluch){
+                $paramsxml2 = [
+                    'ID_PAC' => $zap->PACIENT->ID_PAC,
+                    'IDCASE' => $sluch->IDCASE,
+                    'USL_OK' => $sluch->USL_OK,
+                    'VIDPOM' => $sluch->VIDPOM,
+                    'DISP' => $sluch->DISP,
+                    'FOR_POM' => $sluch->FOR_POM,
+                    'METOD_HMP' => $sluch->METOD_HMP,
+                    'NPR_MO' => $sluch->NPR_MO,
+                    'LPU' => $sluch->LPU,
+                    'LPU_1' => $sluch->LPU_1,
+                    'PODR' => $sluch->PODR,
+                    'PROFIL' => $sluch->PROFIL,
+                    'NHISTORY' => $sluch->NHISTORY,
+                    'DATE_1' => $sluch->DATE_1,
+                    'DATE_2' => $sluch->DATE_2,
+                    'DS0' => $sluch->DS0,
+                    'VNOV_M' => $sluch->VNOV_M,
+                    'RSLT' => $sluch->RSLT,
+                    'ISHOD' => $sluch->ISHOD,
+                    'IDDOKT' => $sluch->IDDOKT,
+                    'ED_COL' => $sluch->ED_COL,
+                    'TARIF' => $sluch->TARIF,
+                    'SUMV' => $sluch->SUMV,
+                ];
+                
+
+                ModelXML::getInstance()
+                    ->fillTable('sluch_'.$short_name, $paramsxml2);
+
                 foreach ($sluch->USL as $usl){
-                    $us++;
-                    echo 'usl:--' . $usl->IDSERV.'<br>';
-                }
-            }*/
-        }
+                    $paramsxml3 = [
+                        'IDCASE' => $sluch->IDCASE,
+                        'IDSERV' => $usl->IDSERV,
+                        'LPU' => $usl->LPU,
+                        'LPU_1' => $usl->LPU_1,
+                        'PODR' => $usl->PODR,
+                        'DET' => $usl->DET,
+                        'DATE_IN' => $usl->DATE_IN,
+                        'DATE_OUT' => $usl->DATE_OUT,
+                        'DS' => $usl->DS,
+                        'CODE_USL' => $usl->CODE_USL,
+                        'ED_COL' => $usl->ED_COL,
+                        'KOEF_K' => $usl->KOEF_K,
+                        'POUH' => $usl->POUH,
+                        'ZAK' => $usl->ZAK,
+                        'KOL_USL' => $usl->KOL_USL,
+                        'TARIF' => $usl->TARIF,
+                        'SUMV_USL' => $usl->SUMV_USL,
+                        'PRVS' => $usl->PRVS,
+                        'CODE_MD' => $usl->CODE_MD,
+                        'COMENTU' => $usl->COMENTU,
+                        'DIR2' => $usl->DIR2,
+                        'GR_ZDOROV' => $usl->GR_ZDOROV,
+                        'STUDENT' => $usl->STUDENT,
+                        'SPOLIS' => $usl->SPOLIS,
+                        'NPOLIS' => $usl->NPOLIS,
+                        'STAND' => $usl->STAND,
+                        'P_PER' => $usl->P_PER,
+                        'NPL' => $usl->NPL,
+                        'idsh' => $usl->idsh,
+                    ];
 
-        echo $pc.' кол-во пациентов.<br>';
-        echo $sl.' кол-во стр.сл.<br>';
-        echo $us.' кол-во усл.<br>';
+                    ModelXML::getInstance()
+                        ->fillTable('usl_'.$short_name, $paramsxml3);
+                }
+            }
+        }
+        $this->deleteFiles();
+        echo '<br><br>';
+        $today = date("H:i:s");
+        echo("Текущее время: $today");
     }
 
     private function extractZIP()
     {
         if (file_exists($this->fileXML)){
-            $timestart = microtime(true);
+            $this->timestart = microtime(true);
+
+            $today = date("H:i:s");
+            echo("Текущее время: $today");
+            echo '<br><br>';
+
             $zip = new ZipArchive();
             if ($zip->open($this->fileXML)) {
-                $zip->extractTo('./files/xml/');
+                $zip->extractTo($this->pathXML);
                 $zip->close();
-                echo 'file extract <br>';
             }
             else{
                 exit("Невозможно открыть {$this->fileXML}");
@@ -100,5 +153,12 @@ class UploadXML extends client
             echo 'File "'.$this->fileXML.'" not found';
         }
 
+    }
+
+    private function deleteFiles()
+    {
+        foreach(glob($this->pathXML.'*.XML') as $filex){
+            unlink($filex);
+        }
     }
 }
