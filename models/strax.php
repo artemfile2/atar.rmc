@@ -47,4 +47,19 @@ class strax extends model{
                 1);
         return $res ?? null;
     }
+
+    public function CountFromTable()
+    {
+        $res = $this->db
+            ->select("SELECT count(*) FROM {$this->table}");
+        return $res ?? null;
+    }
+
+    public function ForPaginat($offset, $row_count )
+    {
+        $res = $this->db
+            ->select("SELECT * FROM {$this->table} ORDER BY datet
+                          DESC LIMIT {$offset}, {$row_count}");
+        return $res ?? null;
+    }
 }

@@ -28,8 +28,24 @@ class strax extends client
 
     public function action_all()
     {
+        // Сколько всего записей в таблице strax
+        $count = ModelStrax::getInstance()->CountFromTable();
+        foreach ($count[0] as $item){
+            $item = (int) $item;
+        }
 
-        //todo реализовать постраничный вывод всех сотрудников, тк долго грузит все данные
+        $show_pages = 20; // Сколько записей покажем пользователю
+        $page = filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);// Номер текущей страницы
+
+        if ($page){
+            $offset = (($show_pages * $page) - $show_pages);
+        }
+        else{
+            $page = 1; // Ставим в единицу (первая страница) если не передан параметр $_GET['page']
+            $offset = 0;
+        }
+
+        $pageTable = ModelStrax::getInstance()->ForPaginat($offset, $show_pages);
 
         if ($this->straxid == null){
             $this->show404();
@@ -42,8 +58,10 @@ class strax extends client
         $this->title = 'Справочник strax';
 
         $this->content = system::template('v_strax.php',
-            ['content' => $this->straxid,
+            ['content' => $pageTable,
              'mainmenu' => $menuActive,
+             'count' => $item,
+             'show_pages' => $show_pages,
              'breadcrumb' => [
                  'Главная' => ROOT . 'filial/index',
                  'Сотрудники' => null,
