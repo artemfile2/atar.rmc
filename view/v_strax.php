@@ -63,3 +63,33 @@
             </tbody>
         </table>
     </div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination pagination-lg justify-content-center">
+        <?php
+        if ($count > $show_pages){
+            $i = 1;
+            while ($i <= ceil($count / $show_pages)) {
+                if ($i != $this_page){
+                    /*echo '<a href="?page=' . $i . '"
+                            title="Перейти на страницу '.$i.'">'.$i.'</a>';*/
+                    echo '<li class="page-item">
+                            <a class="page-link" href="/strax/all/?page='.$i.'"
+                             tabindex="-1">'.$i.'</a>
+                            </li>';
+                }
+                else{
+                    echo '<b>' . $i . '</b>'; // Если это текущая страница - то ссылка на саму себя не нужна
+                }
+                $i++;
+            }
+        }
+        ?>
+<!--        <li class="page-item">
+            <a class="page-link" href="/strax/all/?page=1" tabindex="-1">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="/strax/all/?page=2">2</a>
+        </li>-->
+    </ul>
+</nav>
