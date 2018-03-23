@@ -10,12 +10,18 @@ abstract class client extends base{
     protected $content;
     protected $params;
     protected $menu;
-    
+
+    /**
+     * client constructor.
+     */
     public function __construct(){
         $this->title = 'Наш сайт - ';
         $this->content = '';
     }
 
+    /**
+     * @return mixed|string
+     */
     public function render(){
 
             $menu = new mainmenu();
@@ -30,6 +36,9 @@ abstract class client extends base{
             return $html;
     }
 
+    /**
+     *
+     */
     public function show404()
     {
         $this->title = 'Страница не найдена';

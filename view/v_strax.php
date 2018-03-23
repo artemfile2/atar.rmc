@@ -67,29 +67,63 @@
 <nav aria-label="Page navigation">
     <ul class="pagination pagination-lg justify-content-center">
         <?php
-        if ($count > $show_pages){
-            $i = 1;
-            while ($i <= ceil($count / $show_pages)) {
-                if ($i != $this_page){
-                    /*echo '<a href="?page=' . $i . '"
-                            title="Перейти на страницу '.$i.'">'.$i.'</a>';*/
-                    echo '<li class="page-item">
-                            <a class="page-link" href="/strax/all/?page='.$i.'"
-                             tabindex="-1">'.$i.'</a>
-                            </li>';
-                }
-                else{
-                    echo '<b>' . $i . '</b>'; // Если это текущая страница - то ссылка на саму себя не нужна
-                }
-                $i++;
+        $y = 1;
+        $first = $pages_side[0];
+        $last = $pages_side[1];
+        $cur_page = $pages_side[2];
+        $count_page = $pages_side[3];
+
+        if ($first > 1){
+            echo '<li class="page-item">
+                     <a class="page-link" href="/strax/all/?page='.$y.'"
+                         tabindex="-1">'.$y.'</a>
+                  </li>';
+        }
+        $y = $first - 1;
+        if ($first > 2) {
+            echo '<li class="page-item">
+                    <a class="page-link" href="/strax/all/?page='.$y.'"
+                       tabindex="-1">...</a>
+                 </li>';
+        } else {
+            for($i = 2; $i < $first; $i++){
+                echo '<li class="page-item">
+                         <a class="page-link" href="/strax/all/?page='.$i.'"
+                            tabindex="-1">'.$i.'</a>
+                      </li>';
             }
         }
+        for($i = $first; $i < $last + 1; $i++){
+            // если выводится текущая страница, то ей назначается особый стиль css
+            if($i == $cur_page) {
+                echo '<li class="page-item active">
+                         <a class="page-link" href="/strax/all/?page='.$i.'"
+                            tabindex="-1">'.$i.'</a>
+                      </li>';
+            }
+            else {
+                echo '<li class="page-item">
+                         <a class="page-link" href="/strax/all/?page='.$i.'"
+                            tabindex="-1">'.$i.'</a>
+                      </li>';
+            }
+        }
+        $y = $last + 1;
+        // часть страниц скрываем троеточием
+        if ($last < $count_page && $count_page - $last > 2){
+            echo '<li class="page-item">
+                    <a class="page-link" href="/strax/all/?page='.$y.'"
+                       tabindex="-1">...</a>
+                 </li>';
+        }
+        // выводим последнюю страницу
+        if ($last < $count_page) {
+            echo '<li class="page-item">
+                    <a class="page-link" href="/strax/all/?page='.$count_page.'"
+                       tabindex="-1">'.$count_page.'</a>
+                 </li>';
+        }
         ?>
-<!--        <li class="page-item">
-            <a class="page-link" href="/strax/all/?page=1" tabindex="-1">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="/strax/all/?page=2">2</a>
-        </li>-->
+
     </ul>
 </nav>
