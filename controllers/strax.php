@@ -12,6 +12,9 @@ class strax extends client
     private $mainmenu;
     private $straxid;
 
+    /**
+     * strax constructor.
+     */
     public function __construct(){
 
         $this->mainmenu = (new mainmenu())->Menu();
@@ -26,6 +29,9 @@ class strax extends client
         }
     }
 
+    /**
+     *
+     */
     public function action_all()
     {
         // Сколько всего записей в таблице strax
@@ -35,7 +41,18 @@ class strax extends client
         }
 
         $show_pages = 20; // Сколько записей покажем пользователю
+        $preview = 3;
+        $count_page = ceil($item / $show_pages);
         $page = filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);// Номер текущей страницы
+
+        $first = $page - $preview;
+        if ($first < 1){
+            $first = 1;
+        }
+        $last = $page + $preview;
+        if ($last > $count_page){
+            $last = $count_page;
+        }
 
         if ($page){
             $offset = (($show_pages * $page) - $show_pages);
@@ -62,6 +79,7 @@ class strax extends client
              'mainmenu' => $menuActive,
              'count' => $item,
              'show_pages' => $show_pages,
+             'pages_side' => [$first, $last, $page, $count_page],
              'breadcrumb' => [
                  'Главная' => ROOT . 'filial/index',
                  'Сотрудники' => null,
@@ -69,6 +87,9 @@ class strax extends client
             ]);
     }
 
+    /**
+     *
+     */
     public function action_depart()
     {
         $NameFilial = ModelStrax::getInstance()
@@ -103,6 +124,9 @@ class strax extends client
             ]);
     }
 
+    /**
+     *
+     */
     public function action_one()
     {
         $straxid = ModelStrax::getInstance()
@@ -138,6 +162,9 @@ class strax extends client
             ]);
     }
 
+    /**
+     *
+     */
     public function action_add(){
 
         if (count($_POST) > 0) {
@@ -167,6 +194,9 @@ class strax extends client
         ]);
     }
 
+    /**
+     *
+     */
     public function action_edit(){
 
         if (count($_POST) > 0) {
@@ -204,6 +234,9 @@ class strax extends client
         ]);
     }
 
+    /**
+     *
+     */
     public function action_delete(){
         ModelStrax::getInstance()->del($this->params[2]);
     }

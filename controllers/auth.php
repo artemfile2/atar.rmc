@@ -9,6 +9,9 @@ use helpers\checkstring;
 class auth extends client
 {
 
+    /**
+     * @return bool
+     */
     public function check(){
         if(!isset($_SESSION['auth'])) {
             if(isset($_COOKIE['login']) && isset($_COOKIE['password'])) {
@@ -34,6 +37,9 @@ class auth extends client
 
     }
 
+    /**
+     *
+     */
     public function action_login(){
         $login = checkstring::clean($_POST['login']);
         $password = checkstring::clean($_POST['password']);
@@ -72,6 +78,9 @@ class auth extends client
             ]);
     }
 
+    /**
+     *
+     */
     public function action_logout(){
         if($this->params[0] === 'auth' && $this->params[1] === 'logout') {
             unset($_SESSION['auth']);

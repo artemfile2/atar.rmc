@@ -11,6 +11,9 @@ class filial extends client
     private $mainmenu;
     private $filial_all;
 
+    /**
+     * filial constructor.
+     */
     public function __construct(){
 
         $this->mainmenu = (new mainmenu())->Menu();
@@ -25,6 +28,9 @@ class filial extends client
         }
     }
 
+    /**
+     *
+     */
     public function action_index()
     {
 
@@ -41,6 +47,9 @@ class filial extends client
             ]);
     }
 
+    /**
+     *
+     */
     public function action_all()
     {
 
