@@ -41,9 +41,10 @@ class strax extends client
         }
 
         $show_pages = 20; // Сколько записей покажем пользователю
-        $preview = 3;
+        $preview = 2;
         $count_page = ceil($item / $show_pages);
-        $page = filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);// Номер текущей страницы
+        $page = isset($_GET['page']) ?
+                filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT) : 1;// Номер текущей страницы
 
         $first = $page - $preview;
         if ($first < 1){

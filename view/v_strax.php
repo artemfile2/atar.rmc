@@ -45,10 +45,11 @@
             <tbody>
             <?php
                 $i = 1;
+                $page = $pages_side[2] == 1 ? $pages_side[2] : $pages_side[2] * 10 ;
                 foreach ($content as $item):
             ?>
             <tr>
-                <td><?= $i++ ?></td>
+                <td><?= $page++ ?></td>
                 <td><a href="<?='/strax/one/'. $item['TABN']?>"><?=$item['TABN']?></a></td>
                 <td><a href="<?='/strax/one/'. $item['TABN']?>"><?=$item['FIO']?></a></td>
                 <td><a href="<?='/strax/one/'. $item['TABN']?>"><?=$item['GO']?></a></td>
